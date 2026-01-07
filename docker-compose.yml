@@ -1,0 +1,15 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: dawsondial-postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: dawson_dial
+      POSTGRES_USER: dawson
+      POSTGRES_PASSWORD: dawson
+    volumes:
+      - dawsondial_pgdata:/var/lib/postgresql/data
+
+volumes:
+  dawsondial_pgdata:
