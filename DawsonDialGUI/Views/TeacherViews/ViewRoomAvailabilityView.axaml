@@ -1,0 +1,136 @@
+<UserControl
+    x:Class="DawsonDialGUI.Views.TeacherViews.ViewRoomAvailabilityView"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="using:DawsonDialGUI.ViewModels.TeacherViewModels"
+    x:DataType="vm:ViewRoomAvailabilityViewModel"
+    mc:Ignorable="d">
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Border
+                Grid.Row="1"
+                Width="500"
+                Padding="30"
+                Background="#1E1E1E"
+                BorderBrush="#444"
+                BorderThickness="1"
+                CornerRadius="12">
+                <StackPanel HorizontalAlignment="Center" Spacing="15">
+                    <!--  Header  -->
+                    <TextBlock
+                        HorizontalAlignment="Center"
+                        FontSize="28"
+                        FontWeight="Bold"
+                        Foreground="White"
+                        Text="Check Room Availability" />
+
+                    <!--  Date + Time Pickers  -->
+                    <StackPanel Spacing="10">
+                        <Grid ColumnDefinitions="Auto,*" RowDefinitions="Auto,Auto,Auto">
+                            <!--  Date  -->
+                            <TextBlock
+                                Grid.Row="0"
+                                Grid.Column="0"
+                                Margin="0,0,10,0"
+                                VerticalAlignment="Center"
+                                FontWeight="Bold"
+                                Foreground="White"
+                                Text="Date:" />
+                            <DatePicker
+                                Grid.Row="0"
+                                Grid.Column="1"
+                                HorizontalAlignment="Stretch"
+                                Classes="form"
+                                SelectedDate="{Binding Date}" />
+
+                            <!--  Start  -->
+                            <TextBlock
+                                Grid.Row="1"
+                                Grid.Column="0"
+                                Margin="0,10,10,0"
+                                VerticalAlignment="Center"
+                                FontWeight="Bold"
+                                Foreground="White"
+                                Text="Start:" />
+                            <TimePicker
+                                Grid.Row="1"
+                                Grid.Column="1"
+                                Margin="0,10,0,0"
+                                HorizontalAlignment="Stretch"
+                                Classes="form"
+                                SelectedTime="{Binding StartTime}" />
+
+                            <!--  End  -->
+                            <TextBlock
+                                Grid.Row="2"
+                                Grid.Column="0"
+                                Margin="0,10,10,0"
+                                VerticalAlignment="Center"
+                                FontWeight="Bold"
+                                Foreground="White"
+                                Text="End:" />
+                            <TimePicker
+                                Grid.Row="2"
+                                Grid.Column="1"
+                                Margin="0,10,0,0"
+                                HorizontalAlignment="Stretch"
+                                Classes="form"
+                                SelectedTime="{Binding EndTime}" />
+                        </Grid>
+                    </StackPanel>
+
+                    <!--  Room Picker  -->
+                    <StackPanel IsVisible="{Binding ShowRoomOptions}" Spacing="10">
+                        <TextBlock
+                            FontWeight="Bold"
+                            Foreground="White"
+                            Text="Room:" />
+                        <ComboBox
+                            Width="240"
+                            HorizontalAlignment="Center"
+                            ItemsSource="{Binding AvailableRooms}"
+                            SelectedItem="{Binding SelectedRoom}" />
+                    </StackPanel>
+
+                    <!--  Error Message  -->
+                    <TextBlock
+                        HorizontalAlignment="Center"
+                        Foreground="Red"
+                        Text="{Binding ErrorMessage}"
+                        TextWrapping="Wrap" />
+                    <TextBlock
+                        HorizontalAlignment="Center"
+                        Foreground="Green"
+                        Text="{Binding SuccessMessage}"
+                        TextWrapping="Wrap" />
+
+                    <!--  Actions  -->
+                    <Button
+                        HorizontalAlignment="Center"
+                        Classes="menu"
+                        Command="{Binding LoadAvailableRoomsCommand}"
+                        Content="Check Room Availability" />
+                    <Button
+                        HorizontalAlignment="Center"
+                        Classes="menu"
+                        Command="{Binding ViewRoomDetailsCommand}"
+                        Content="View Room Details"
+                        IsEnabled="{Binding SelectedRoom}" />
+                    <Button
+                        HorizontalAlignment="Center"
+                        Classes="menu"
+                        Command="{Binding GoBackToSchedulingCommand}"
+                        Content="Back to Scheduling" />
+                </StackPanel>
+            </Border>
+        </Grid>
+    </ScrollViewer>
+</UserControl>

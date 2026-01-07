@@ -1,0 +1,108 @@
+<UserControl x:Class="DawsonDialGUI.Views.TeacherViews.EditEventView"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="using:DawsonDialGUI.ViewModels.TeacherViewModels"
+    x:DataType="vm:EditEventViewModel" mc:Ignorable="d">
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Border Grid.Row="1" Background="#1E1E1E" CornerRadius="12" Padding="30,40"
+                BorderBrush="#444" BorderThickness="1" Width="500" HorizontalAlignment="Center">
+                <StackPanel Spacing="20" HorizontalAlignment="Center">
+                    <!-- Header -->
+                    <TextBlock Text="Edit Event" FontSize="24" FontWeight="Bold"
+                        HorizontalAlignment="Center" Foreground="White" />
+
+                    <!-- Title -->
+                    <StackPanel>
+                        <TextBlock Text="Title" Foreground="White" Margin="0,0,0,5" />
+                        <TextBox Text="{Binding Title}" Watermark="Event title" Width="400"
+                            HorizontalAlignment="Center" />
+                    </StackPanel>
+
+                    <!-- Description -->
+                    <StackPanel>
+                        <TextBlock Text="Description" Foreground="White" Margin="0,0,0,5" />
+                        <TextBox Text="{Binding Description}" Watermark="Event description"
+                            Width="400" Height="80" AcceptsReturn="True" TextWrapping="Wrap"
+                            HorizontalAlignment="Center" />
+                    </StackPanel>
+
+                    <!-- Date -->
+                    <StackPanel>
+                        <TextBlock Text="Date:" Foreground="White" HorizontalAlignment="Center"
+                            Margin="0,0,0,5" />
+                        <DatePicker SelectedDate="{Binding Date}" HorizontalAlignment="Center" />
+                    </StackPanel>
+
+                    <!-- Start Time -->
+                    <StackPanel>
+                        <TextBlock Text="Start Time:" Foreground="White"
+                            HorizontalAlignment="Center" Margin="0,0,0,5" />
+                        <TimePicker SelectedTime="{Binding StartTime}" HorizontalAlignment="Center" />
+                    </StackPanel>
+
+                    <!-- End Time -->
+                    <StackPanel>
+                        <TextBlock Text="End Time:" Foreground="White" HorizontalAlignment="Center"
+                            Margin="0,0,0,5" />
+                        <TimePicker SelectedTime="{Binding EndTime}" HorizontalAlignment="Center" />
+                    </StackPanel>
+
+                    <!-- Check Available Rooms Button -->
+                    <Button Content="Check Available Rooms"
+                        Command="{Binding CheckAvailableRoomsCommand}" Classes="menu"
+                        HorizontalAlignment="Center" />
+
+                    <!-- Help Message -->
+                    <TextBlock Text="{Binding HelpMessage}" Foreground="Yellow"
+                        HorizontalAlignment="Center" IsVisible="{Binding HelpMessage}"
+                        TextWrapping="Wrap" />
+
+                    <!-- Room -->
+                    <StackPanel>
+                        <TextBlock Text="Room:" Foreground="White" HorizontalAlignment="Center"
+                            Margin="0,0,0,5" />
+                        <ComboBox ItemsSource="{Binding AvailableRooms}"
+                            SelectedItem="{Binding SelectedRoomViewModel}" Width="400"
+                            HorizontalAlignment="Center">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding DisplayText}" TextWrapping="Wrap"
+                                        MaxWidth="380" />
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                    </StackPanel>
+
+                    <!-- Error Message -->
+                    <TextBlock Text="{Binding ErrorMessage}" Foreground="Red"
+                        HorizontalAlignment="Center"
+                        IsVisible="{Binding ErrorMessage, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"
+                        TextWrapping="Wrap" />
+
+                    <!-- Success Message -->
+                    <TextBlock Text="{Binding SuccessMessage}" Foreground="LimeGreen"
+                        HorizontalAlignment="Center"
+                        IsVisible="{Binding SuccessMessage, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"
+                        TextWrapping="Wrap" />
+
+                    <!-- Buttons -->
+                    <Button Content="Save Changes" Command="{Binding SaveCommand}" Classes="menu"
+                        HorizontalAlignment="Center" />
+
+                    <Button Content="Back to My Events" Command="{Binding BackToEventsCommand}"
+                        Classes="menu" HorizontalAlignment="Center" />
+                </StackPanel>
+            </Border>
+        </Grid>
+    </ScrollViewer>
+</UserControl> 

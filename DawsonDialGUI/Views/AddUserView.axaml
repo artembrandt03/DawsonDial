@@ -1,0 +1,58 @@
+<UserControl x:Class="DawsonDialGUI.Views.AddUserView"
+             xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:DawsonDialGUI.ViewModels"
+             x:DataType="vm:AddUserViewModel">
+
+    <Grid>
+        <Border Background="#1E1E1E" CornerRadius="12" Padding="30" BorderBrush="#444" BorderThickness="1" Width="500"
+                HorizontalAlignment="Center" VerticalAlignment="Center">
+            <StackPanel Spacing="15">
+                <TextBlock Text="Add New User" FontSize="28" FontWeight="Bold" HorizontalAlignment="Center" Foreground="White"/>
+
+                <ComboBox ItemsSource="{Binding UserTypes}" SelectedItem="{Binding UserType}" Classes="menu"/>
+
+                <TextBlock Text="Username:" Foreground="LightGray"/>
+                <TextBox Text="{Binding Username}" Classes="menu"/>
+
+                <TextBlock Text="First Name:" Foreground="LightGray"/>
+                <TextBox Text="{Binding FirstName}" Classes="menu"/>
+
+                <TextBlock Text="Last Name:" Foreground="LightGray"/>
+                <TextBox Text="{Binding LastName}" Classes="menu"/>
+
+                <TextBlock Text="Password:" Foreground="LightGray"/>
+                <TextBox Text="{Binding Password}" Classes="menu"/>
+
+                <TextBlock Text="Age:" Foreground="LightGray"/>
+                <TextBox Text="{Binding Age}" Classes="menu"/>
+
+                <!-- Student Fields -->
+                <StackPanel IsVisible="{Binding IsStudent}">
+                    <TextBlock Text="Student ID:" Foreground="LightGray"/>
+                    <TextBox Text="{Binding StudentId}" Classes="menu"/>
+
+                    <TextBlock Text="Program:" Foreground="LightGray"/>
+                    <TextBox Text="{Binding Program}" Classes="menu"/>
+
+                    <TextBlock Text="Year:" Foreground="LightGray"/>
+                    <TextBox Text="{Binding Year}" Classes="menu"/>
+                </StackPanel>
+
+                <!-- Teacher Fields -->
+                <StackPanel IsVisible="{Binding IsTeacher}">
+                    <TextBlock Text="Department:" Foreground="LightGray"/>
+                    <TextBox Text="{Binding Department}" Classes="menu"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="10">
+                    <Button Content="Add" Command="{Binding CreateCommand}" Classes="menu"/>
+                    <Button Content="Back" Command="{Binding GoBackToMenuCommand}" Classes="menu"/>
+                </StackPanel>
+
+                <TextBlock Text="{Binding SuccessMessage}" Foreground="LightGreen" HorizontalAlignment="Center"/>
+                <TextBlock Text="{Binding ErrorMessage}" Foreground="Red" HorizontalAlignment="Center"/>
+            </StackPanel>
+        </Border>
+    </Grid>
+</UserControl>

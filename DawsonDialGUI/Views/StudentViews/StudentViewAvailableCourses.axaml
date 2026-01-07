@@ -1,0 +1,67 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:DawsonDialGUI.ViewModels" 
+             x:DataType="vm:StudentViewAvailableCoursesViewModel"
+             x:Class="DawsonDialGUI.Views.StudentViewAvailableCoursesView">
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <StackPanel Grid.Row="0" Margin="20">
+                <Button Classes="menu" Content="Back" Command="{Binding GoBackToMenuCommand}" HorizontalAlignment="Left" />
+                <TextBlock Text="Available Courses" FontSize="24" FontWeight="Bold" Margin="0,20,0,10" />
+                <Button Classes="menu" Content="Enroll in Course" Command="{Binding NavigateToEnrollCommand}" />
+            </StackPanel>
+
+            <!-- Error Message -->
+            <TextBlock Grid.Row="0" 
+                       Text="{Binding ErrorMessage}"
+                       IsVisible="{Binding HasError}"
+                       Foreground="Red"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       TextWrapping="Wrap" />
+
+            <ItemsControl Grid.Row="1" ItemsSource="{Binding AvailableCourses}" Margin="20">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Border Background="#1E1E1E"
+                                CornerRadius="8"
+                                Padding="15"
+                                Margin="0,0,0,10"
+                                BorderBrush="#444"
+                                BorderThickness="1">
+                            <StackPanel Spacing="5">
+                                <TextBlock Text="{Binding Subject}"
+                                         FontSize="18"
+                                         FontWeight="Bold"/>
+                                <TextBlock Text="{Binding CourseCode}"
+                                         FontSize="14"/>
+                                <ItemsControl ItemsSource="{Binding Sections}">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <StackPanel Orientation="Horizontal" 
+                                                      Spacing="10" 
+                                                      Margin="0,5,0,0">
+                                                <TextBlock Text="{Binding SectionNumber, StringFormat='Section {0}'}"
+                                                         VerticalAlignment="Center"/>
+                                                <TextBlock Text="{Binding Teacher.FirstName}"
+                                                         VerticalAlignment="Center"/>
+                                                <TextBlock Text="{Binding Teacher.LastName}"
+                                                         VerticalAlignment="Center"/>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </StackPanel>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </Grid>
+    </ScrollViewer>
+</UserControl>

@@ -1,0 +1,132 @@
+<UserControl x:Class="DawsonDialGUI.Views.AddEventView"
+             xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:DawsonDialGUI.ViewModels"
+             x:DataType="vm:AddEventViewModel">
+
+    <Grid>
+        <Border Background="#1E1E1E"
+                CornerRadius="12"
+                Padding="30"
+                BorderBrush="#444"
+                BorderThickness="1"
+                Width="550"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center">
+
+            <ScrollViewer>
+                <StackPanel Spacing="12">
+                    <TextBlock Text="⚠ The event module is still under development."
+                        Foreground="OrangeRed"
+                        FontWeight="Bold"
+                        FontSize="14"
+                        TextAlignment="Center"
+                        HorizontalAlignment="Center"
+                        TextWrapping="Wrap"/>
+
+                    <TextBlock Text="Add Event" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center" Foreground="White"/>
+
+                    <TextBlock Text="Event Type" Foreground="LightGray"/>
+                    <ComboBox ItemsSource="{Binding EventTypes}" SelectedItem="{Binding SelectedEventType}" Classes="menu"/>
+
+                    <TextBlock Text="Title" Foreground="LightGray"/>
+                    <TextBox Text="{Binding Title}" Classes="menu"/>
+
+                    <TextBlock Text="Description" Foreground="LightGray"/>
+                    <TextBox Text="{Binding Description}" Classes="menu"/>
+
+                    <TextBlock Text="Room" Foreground="LightGray"/>
+                    <ComboBox ItemsSource="{Binding Rooms}" SelectedItem="{Binding SelectedRoom}" Classes="menu">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding RoomNumber}" />
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+
+                    <TextBlock Text="Start Date &amp; Time" Foreground="LightGray"/>
+                    <DatePicker SelectedDate="{Binding StartDate}" Classes="menu"/>
+                    <TextBox Watermark="HH:mm" Text="{Binding StartTime}" Width="100" Classes="menu"/>
+
+                    <TextBlock Text="End Date &amp; Time" Foreground="LightGray"/>
+                    <DatePicker SelectedDate="{Binding EndDate}" Classes="menu"/>
+                    <TextBox Watermark="HH:mm" Text="{Binding EndTime}" Width="100" Classes="menu"/>
+
+                    <CheckBox Content="Recurring?" IsChecked="{Binding IsRecurring}" Foreground="White"/>
+
+                    <TextBlock Text="Status" Foreground="LightGray"/>
+                    <ComboBox ItemsSource="{Binding StatusOptions}" SelectedItem="{Binding SelectedStatus}" Classes="menu"/>
+
+                    <!-- Conference -->
+                    <StackPanel IsVisible="{Binding IsConference}">
+                        <TextBlock Text="Speaker" Foreground="LightGray"/>
+                        <ComboBox ItemsSource="{Binding Speakers}" SelectedItem="{Binding SelectedSpeaker}" Classes="menu">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Username}" />
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                    </StackPanel>
+
+                    <!-- ClassSession -->
+                    <StackPanel IsVisible="{Binding IsClassSession}">
+                        <TextBlock Text="Course" Foreground="LightGray"/>
+                        <ComboBox ItemsSource="{Binding Courses}" SelectedItem="{Binding SelectedCourse}" Classes="menu">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Subject}" />
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+
+                        <TextBlock Text="Semester" Foreground="LightGray"/>
+                        <TextBox Text="{Binding Semester}" Classes="menu"/>
+
+                        <TextBlock Text="Section" Foreground="LightGray"/>
+                        <TextBox Text="{Binding Section}" Classes="menu"/>
+                    </StackPanel>
+
+                    <!-- OfficeHours -->
+                    <StackPanel IsVisible="{Binding IsOfficeHours}">
+                        <TextBlock Text="Teacher" Foreground="LightGray"/>
+                        <ComboBox ItemsSource="{Binding Teachers}" SelectedItem="{Binding SelectedTeacher}" Classes="menu">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Username}" />
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+
+                        <CheckBox Content="Is Drop-In?" IsChecked="{Binding IsDropIn}" Foreground="White"/>
+                    </StackPanel>
+
+                    <!-- OfficeMeeting -->
+                    <StackPanel IsVisible="{Binding IsOfficeMeeting}">
+                        <TextBlock Text="Teacher" Foreground="LightGray"/>
+                        <ComboBox ItemsSource="{Binding Teachers}" SelectedItem="{Binding SelectedTeacher}" Classes="menu">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Username}" />
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                    </StackPanel>
+
+                    <Button Content="Create Event" Command="{Binding SubmitCommand}" HorizontalAlignment="Center" Classes="menu"/>
+                    <TextBlock Text="{Binding SuccessMessage}"
+                            Foreground="LightGreen"
+                            HorizontalAlignment="Center"
+                            TextWrapping="Wrap"
+                            MaxWidth="450" />
+
+                    <TextBlock Text="{Binding ErrorMessage}"
+                            Foreground="Red"
+                            HorizontalAlignment="Center"
+                            TextWrapping="Wrap"
+                            MaxWidth="450" />
+                </StackPanel>
+            </ScrollViewer>
+        </Border>
+    </Grid>
+</UserControl>

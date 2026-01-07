@@ -1,0 +1,47 @@
+<UserControl x:Class="DawsonDialGUI.Views.AddRoomView"
+             xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:DawsonDialGUI.ViewModels"
+             x:DataType="vm:AddRoomViewModel">
+
+    <Grid>
+        <Border Background="#1E1E1E" CornerRadius="12" Padding="30" BorderBrush="#444" BorderThickness="1" Width="500"
+                HorizontalAlignment="Center" VerticalAlignment="Center">
+            <StackPanel Spacing="15">
+                <TextBlock Text="Add New Room" FontSize="28" FontWeight="Bold" HorizontalAlignment="Center" Foreground="White"/>
+
+                <ComboBox ItemsSource="{Binding RoomTypes}" SelectedItem="{Binding SelectedRoomType}" Classes="menu"/>
+
+                <TextBlock Text="Room Number:" Foreground="LightGray"/>
+                <TextBox Text="{Binding RoomNumber}" Classes="menu"/>
+
+                <TextBlock Text="Number of Seats:" Foreground="LightGray"/>
+                <TextBox Text="{Binding NumberOfSeats}" Classes="menu"/>
+
+                <!-- Office Fields -->
+                <StackPanel IsVisible="{Binding IsOffice}">
+                    <CheckBox Content="Is Shared Office?" IsChecked="{Binding IsShared}" Foreground="White"/>
+                </StackPanel>
+
+                <!-- ClassRoom Fields -->
+                <StackPanel IsVisible="{Binding IsClassRoom}">
+                    <CheckBox Content="Has Projector" IsChecked="{Binding HasProjector}" Foreground="White"/>
+                    <CheckBox Content="Has Computers" IsChecked="{Binding HasComputers}" Foreground="White"/>
+                </StackPanel>
+
+                <!-- Conference Room Fields -->
+                <StackPanel IsVisible="{Binding IsConferenceRoom}">
+                    <CheckBox Content="Has Projector" IsChecked="{Binding HasProjector}" Foreground="White"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="10">
+                    <Button Content="Add" Command="{Binding AddRoomCommand}" Classes="menu"/>
+                    <Button Content="Back" Command="{Binding GoBackToMenuCommand}" Classes="menu"/>
+                </StackPanel>
+
+                <TextBlock Text="{Binding SuccessMessage}" Foreground="LightGreen" HorizontalAlignment="Center"/>
+                <TextBlock Text="{Binding ErrorMessage}" Foreground="Red" HorizontalAlignment="Center"/>
+            </StackPanel>
+        </Border>
+    </Grid>
+</UserControl>

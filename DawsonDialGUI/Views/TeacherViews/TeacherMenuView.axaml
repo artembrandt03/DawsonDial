@@ -1,0 +1,35 @@
+<UserControl x:Class="DawsonDialGUI.Views.TeacherViews.TeacherMenuView"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:vm="using:DawsonDialGUI.ViewModels.TeacherViewModels"
+    x:DataType="vm:TeacherMenuViewModel">
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <!-- Main menu border and layout -->
+            <Border Grid.Row="1" Background="#1E1E1E" CornerRadius="12" Padding="30"
+                BorderBrush="#444" BorderThickness="1" Width="500">
+                <StackPanel HorizontalAlignment="Center" Spacing="15">
+                    <TextBlock Text="Teacher Menu" FontSize="28" FontWeight="Bold"
+                        HorizontalAlignment="Center" Foreground="White" />
+
+                    <!-- Main navigation buttons -->
+                    <Button Classes="menu" Content="My Profile"
+                        Command="{Binding ViewTeacherProfileCommand}" />
+                    <Button Classes="menu" Content="My Courses"
+                        Command="{Binding ViewMySectionsCommand}" />
+                    <Button Classes="menu" Content="Scheduling"
+                        Command="{Binding SchedulingCommand}" />
+                    <Button Classes="menu" Content="Events" Command="{Binding EventsCommand}" />
+                    <Button Classes="menu" Content="Logout" Command="{Binding LogoutCommand}" />
+                </StackPanel>
+            </Border>
+        </Grid>
+    </ScrollViewer>
+</UserControl>

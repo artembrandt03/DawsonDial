@@ -1,0 +1,57 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:DawsonDialGUI.ViewModels"
+             mc:Ignorable="d"
+             x:Class="DawsonDialGUI.Views.StudentEnrollView"
+             x:DataType="vm:StudentEnrollViewModel">
+
+    <DockPanel Margin="20">
+        <StackPanel DockPanel.Dock="Top" Spacing="10">
+            <TextBlock Text="Enroll in Course"
+                     FontSize="24"
+                     FontWeight="Bold"
+                     HorizontalAlignment="Center"/>
+            
+            <TextBlock Text="{Binding ErrorMessage}"
+                     Foreground="Red"
+                     HorizontalAlignment="Center"
+                     IsVisible="{Binding HasError}"/>
+        </StackPanel>
+
+        <StackPanel Spacing="20" Margin="0,20">
+            <ComboBox ItemsSource="{Binding AvailableCourses}"
+                     SelectedItem="{Binding SelectedCourse}"
+                     HorizontalAlignment="Stretch"
+                     PlaceholderText="Select a course">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Subject}"/>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+
+            <ComboBox ItemsSource="{Binding SelectedCourse.Sections}"
+                     SelectedItem="{Binding SelectedSection}"
+                     HorizontalAlignment="Stretch"
+                     IsEnabled="{Binding SelectedCourse, Converter={x:Static ObjectConverters.IsNotNull}}"
+                     PlaceholderText="Select a section">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding SectionNumber, StringFormat='Section {0}'}"/>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+
+            <StackPanel Orientation="Horizontal" 
+                        HorizontalAlignment="Center" 
+                        Spacing="10">
+                <Button Content="Enroll"
+                        Command="{Binding EnrollInCourseCommand}"/>
+                <Button Content="Back"
+                        Command="{Binding GoBackCommand}"/>
+            </StackPanel>
+        </StackPanel>
+    </DockPanel>
+</UserControl>

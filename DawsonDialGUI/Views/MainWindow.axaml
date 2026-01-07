@@ -1,0 +1,57 @@
+<Window
+    x:Class="DawsonDialGUI.Views.MainWindow"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="using:DawsonDialGUI.ViewModels"
+    Title="DawsonDial"
+    Width="1000"
+    Height="1100"
+    WindowState="Maximized"
+    x:DataType="vm:MainWindowViewModel"
+    Icon="/Assets/DawsonDialIcon.png"
+    mc:Ignorable="d">
+
+        <Grid>
+            <!-- Background image -->
+            <Image Source="avares://DawsonDialGUI/Assets/Dawson-background.png"
+                Stretch="UniformToFill"
+                ZIndex="0" />
+
+            <!-- Overlaying content (header, dynamic view, footer) -->
+            <Grid Margin="20"
+                RowDefinitions="Auto,*,Auto"
+                ZIndex="1">
+
+                <!-- Header -->
+                <StackPanel
+                    Grid.Row="0"
+                    Margin="0,0,0,10"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Top"
+                    Orientation="Horizontal">
+                    <Image
+                        Width="40"
+                        Height="40"
+                        Margin="0,0,10,0"
+                        Source="/Assets/DawsonDialIcon.png" />
+                    <TextBlock
+                        FontSize="32"
+                        FontWeight="Bold"
+                        Text="DawsonDial" />
+                </StackPanel>
+
+                <!-- Main View Swapper -->
+                <ContentControl Grid.Row="1" Content="{Binding CurrentView}" />
+
+                <!-- Footer -->
+                <TextBlock
+                    Grid.Row="2"
+                    Margin="0,20,0,0"
+                    HorizontalAlignment="Center"
+                    Opacity="0.5"
+                    Text="© 2025 DawsonDial" />
+            </Grid>
+        </Grid>
+</Window>

@@ -1,0 +1,19 @@
+<UserControl x:Class="DawsonDialGUI.Views.UserMenuView"
+             xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:DawsonDialGUI.ViewModels"
+             x:DataType="vm:UserMenuViewModel">
+
+    <Grid>
+        <Border Background="#1E1E1E" CornerRadius="12" Padding="30" BorderBrush="#444" BorderThickness="1" Width="500"
+                HorizontalAlignment="Center" VerticalAlignment="Center">
+            <StackPanel HorizontalAlignment="Center" Spacing="15">
+                <TextBlock Text="User Menu" FontSize="28" FontWeight="Bold" HorizontalAlignment="Center" Foreground="White" />
+
+                <Button Classes="menu" Content="View All Users" Command="{Binding ViewAllUsersCommand}" />
+                <Button Classes="menu" Content="Add User" Command="{Binding AddUserCommand}" />
+                <Button Classes="menu" Content="Back to Menu" Command="{Binding GoBackToMenuCommand}" />
+            </StackPanel>
+        </Border>
+    </Grid>
+</UserControl>

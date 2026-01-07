@@ -1,0 +1,51 @@
+<UserControl x:Class="DawsonDialGUI.Views.ViewAllUsersView"
+             xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:DawsonDialGUI.ViewModels"
+             xmlns:conv="clr-namespace:DawsonDialGUI.Converters"
+             x:DataType="vm:ViewAllUsersViewModel"
+             x:Name="root">
+    
+        <UserControl.Resources>
+            <conv:NotAdminVisibilityConverter x:Key="NotAdminVisibilityConverter"/>
+        </UserControl.Resources>
+
+    <Grid>
+        <Border Background="#1E1E1E" CornerRadius="12" Padding="30" BorderBrush="#444" BorderThickness="1" Width="600"
+                HorizontalAlignment="Center" VerticalAlignment="Center">
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <StackPanel Spacing="15">
+                    <TextBlock Text="All Users" FontSize="28" FontWeight="Bold" HorizontalAlignment="Center" Foreground="White" />
+
+                    <ItemsControl ItemsSource="{Binding Users}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Border Background="#2a2a2a" CornerRadius="6" Padding="10" Margin="0,5,0,0">
+                                    <Grid ColumnDefinitions="*,Auto" VerticalAlignment="Center">
+                                        <StackPanel Grid.Column="0" Orientation="Vertical" VerticalAlignment="Center">
+                                            <TextBlock Text="{Binding Username}" FontWeight="Bold" Foreground="White"
+                                                    TextTrimming="CharacterEllipsis"/>
+                                            <TextBlock Text="{Binding UserType, StringFormat='({0})'}" Foreground="Gray"
+                                                    FontSize="12" />
+                                        </StackPanel>
+
+                                        <Button Grid.Column="1"
+                                                Content="Modify"
+                                                Classes="menu"
+                                                Tag="{Binding}"
+                                                IsVisible="{Binding UserType, Converter={StaticResource NotAdminVisibilityConverter}}"
+                                                Click="OnModifyUserClick"
+                                                Margin="10,0,0,0"
+                                                VerticalAlignment="Center" />
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+
+                    <Button Classes="menu" Content="Back to Menu" Command="{Binding GoBackToMenuCommand}" HorizontalAlignment="Center" />
+                </StackPanel>
+            </ScrollViewer>
+        </Border>
+    </Grid>
+</UserControl>

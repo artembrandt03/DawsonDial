@@ -1,0 +1,42 @@
+<UserControl x:Class="DawsonDialGUI.Views.ViewAllRoomsView"
+             xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:DawsonDialGUI.ViewModels"
+             x:DataType="vm:ViewAllRoomsViewModel"
+             x:Name="root">
+
+    <Grid>
+        <Border Background="#1E1E1E" CornerRadius="12" Padding="30" BorderBrush="#444" BorderThickness="1" Width="600"
+                HorizontalAlignment="Center" VerticalAlignment="Center">
+            <StackPanel Spacing="15">
+                <TextBlock Text="All Rooms" FontSize="28" FontWeight="Bold" HorizontalAlignment="Center" Foreground="White" />
+
+                <ItemsControl ItemsSource="{Binding Rooms}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Border Background="#2a2a2a" CornerRadius="6" Padding="10" Margin="0,5,0,0">
+                                <Grid ColumnDefinitions="*,Auto" VerticalAlignment="Center">
+                                    <StackPanel>
+                                        <TextBlock Text="{Binding RoomNumber}" FontWeight="Bold" Foreground="White"/>
+                                        <TextBlock Text="{Binding Type}" Foreground="Gray"/>
+                                    </StackPanel>
+
+                                    <Button Grid.Column="1"
+                                            Content="Modify"
+                                            Classes="menu"
+                                            Tag="{Binding}"
+                                            Click="OnModifyRoomClick"
+                                            Margin="10,0,0,0"
+                                            HorizontalAlignment="Right"
+                                            VerticalAlignment="Center"/>
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+
+                <Button Classes="menu" Content="Back" Command="{Binding GoBackToMenuCommand}" HorizontalAlignment="Center" />
+            </StackPanel>
+        </Border>
+    </Grid>
+</UserControl>

@@ -1,0 +1,32 @@
+<UserControl x:Class="DawsonDialGUI.Views.TeacherViews.TeacherSchedulingMenuView"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:vm="using:DawsonDialGUI.ViewModels.TeacherViewModels"
+    x:DataType="vm:TeacherSchedulingMenuViewModel">
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <Grid>
+            <!-- Scheduling submenu border and layout -->
+            <Border Background="#1E1E1E" CornerRadius="12" Padding="30" BorderBrush="#444"
+                BorderThickness="1" Width="500" VerticalAlignment="Center"
+                HorizontalAlignment="Center">
+                <StackPanel Spacing="20">
+                    <TextBlock Text="Scheduling" FontSize="24" FontWeight="Bold"
+                        HorizontalAlignment="Center" Foreground="White" />
+                    <!-- Scheduling options -->
+                    <Button Classes="menu" Content="Set Office Hours"
+                        Command="{Binding SetOfficeHoursCommand}" />
+                    <Button Classes="menu" Content="View My Schedule"
+                        Command="{Binding ViewMyScheduleCommand}" />
+                    <Button Classes="menu" Content="Schedule Conference"
+                        Command="{Binding ScheduleConferenceCommand}" />
+                    <Button Classes="menu" Content="View Room Availability"
+                        Command="{Binding ViewRoomAvailabilityCommand}" />
+                    <!-- Back navigation -->
+                    <Button Classes="menu" Content="Back to Menu"
+                        Command="{Binding GoBackToMenuCommand}" HorizontalAlignment="Center" />
+                </StackPanel>
+            </Border>
+        </Grid>
+    </ScrollViewer>
+</UserControl>
