@@ -1,4 +1,5 @@
 # DawsonDial – College Management System
+<img width="1002" height="1135" alt="dd-1" src="https://github.com/user-attachments/assets/05ac3bd7-95e1-450a-8774-69c133b5a94d" />
 
 ## Overview
 
@@ -229,6 +230,11 @@ The desktop application will launch.
 A full demo walkthrough of the application is available here:
 
 https://www.youtube.com/watch?v=5MVbZ24Strk
+
+<img width="1001" height="1135" alt="dd-2" src="https://github.com/user-attachments/assets/ea71c4f9-2db4-425c-b88d-ce73e6e5cd0a" />
+<img width="1005" height="1135" alt="dd-3" src="https://github.com/user-attachments/assets/76b0e4b7-7bee-48ad-95ac-77c363a04186" />
+<img width="1002" height="1137" alt="dd-4" src="https://github.com/user-attachments/assets/f2ce1cbd-2658-4cf1-b7c8-7a130932fb99" />
+
 
 ---
 
